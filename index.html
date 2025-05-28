@@ -1089,7 +1089,7 @@ select:focus {
 
   function openLightbox(imageSrc) {
     currentImageIndex = images.indexOf(imageSrc);
-    lightboxImg.src = imageSrc;
+     lightboxImg.src = imageSrc;
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
@@ -1195,7 +1195,10 @@ select:focus {
     const formData = new FormData(this);
     
     // Submit form using Fetch API
-    fetch('https://formsubmit.co/el/licetu')
+    fetch('https://formsubmit.hy07my@gmail.com', {
+      method: 'POST',
+      body: formData
+    })
     .then(response => response.json())
     .then(data => {
       // Hide modal and show thank you message
