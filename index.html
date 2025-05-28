@@ -365,29 +365,35 @@ nav a:hover {
 
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 10px;
   max-height: 70vh;
   overflow-y: auto;
-  padding: 10px;
 }
 
 .collection-item {
   position: relative;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4; /* Better for portrait photos */
   transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .collection-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
 }
 
 .collection-item:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+}
+
+.collection-item:hover img {
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
