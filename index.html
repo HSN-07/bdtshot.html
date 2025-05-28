@@ -449,65 +449,108 @@ nav a:hover {
   opacity: 0.8;
 }
 
-/* Contact Section */
-.contact-section {
-  background: var(--light);
-  padding: 4rem 0;
+/* Contact Styles */
+.contact-info {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-info i {
+  color: var(--accent);
+  width: 20px;
   text-align: center;
 }
 
-.contact-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
+.contact-info a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-/* Contact Form */
-.contact-form {
-  max-width: 600px;
-  margin: 2rem auto;
+.contact-info a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
   padding: 2rem;
-  background: rgb(250, 248, 248);
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
+form label {
   font-weight: 500;
-  color: var(--primary);
-  font-size: 0.95rem;
+  color: var(--text-dark);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #e0e0e0;
+form input,
+form select,
+form textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--gray);
   border-radius: 4px;
-  font-size: 0.95rem;
-  transition: border 0.3s;
+  font-size: 1rem;
+  background-color: white;
+  color: var(--text-dark);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--primary);
+form input:focus,
+form select:focus,
+form textarea:focus {
   outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
-.form-group textarea {
-  min-height: 150px;
+form textarea {
+  min-height: 120px;
   resize: vertical;
+}
+
+form button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+form button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
 }
 
 /* Footer */
@@ -947,6 +990,65 @@ select:focus {
     <i class="fab fa-instagram"></i> Follow Us
   </a>
 </div>
+
+  
+  <section id="contact">
+    <h2>Contact Information</h2>
+    <div class="contact-info">
+      <p><i class="fas fa-user"></i> <strong>Owner:</strong> BDT SHOT</p>
+      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:hy07my@gmail.com">hy07my@gmail.com</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Glasgow City, UK</p>
+      
+    </div>
+    
+    <div class="text-center mb-4">
+      <h3 class="fw-bold">Get In Touch</h3>
+      <p class="text-muted">Reach out for a consultation or custom project</p>
+    </div>
+    <div class="service-card">
+      <form action="https://formsubmit.co/hy07my@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from BDT SHOTS">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+        
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+         
+        <div class="form-group">
+          <label for="Special Requests">Special Requests</label>
+          <input type="text" id="email" name="message" placeholder="Special Requests" required>
+        </div>
+
+
+
+        
+        <div class="form-group">
+          <label for="service">Service Interested In</label>
+          <select id="service" name="service" required>
+            <option value="">Select Service</option>
+            <option>Website Template</option>
+            <option>Custom Development</option>
+            <option>Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        </div>
+        
+        <button type="submit"><i class="fas fa-paper-plane"></i> BOOK </button>
+      </form>
+    </div>
+  </section>
+</main>
 
 
 <footer>
