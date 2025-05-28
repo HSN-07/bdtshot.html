@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BDT Shoots | Book Your Photography Session</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #000000;
+  --accent: #ffffff;
+  --light: #f8f8f8;
+  --dark: #222222;
+  --text: #333333;
+  --gray: #666666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-img-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+  perspective: 1000px; /* Added for 3D effect */
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: spin3D 8s linear infinite;
+  transform-style: preserve-3d; /* Added for 3D effect */
+}
+
+/* New 3D spin animation */
+@keyframes spin3D {
+  0% { 
+    transform: rotateY(0deg) rotateX(10deg);
+  }
+  25% { 
+    transform: rotateY(90deg) rotateX(10deg);
+  }
+  50% { 
+    transform: rotateY(180deg) rotateX(10deg);
+  }
+  75% { 
+    transform: rotateY(270deg) rotateX(10deg);
+  }
+  100% { 
+    transform: rotateY(360deg) rotateX(10deg);
+  }
+}
+
+/* Add a subtle shadow that moves with the rotation */
+.profile-img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+              rgba(0,0,0,0.4) 0%, 
+              transparent 70%);
+  animation: shadowRotate 8s linear infinite;
+}
+
+@keyframes shadowRotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background-color: var(--accent);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  z-index: 2; /* Ensure badge stays above the image */
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.tagline {
+  font-style: italic;
+  opacity: 0.8;
+  color: rgba(14, 13, 13, 0.8);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.tagline {
+  font-style: italic;
+  opacity: 0.8;
+  color: rgba(255,255,255,0.8);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Navigation */
+nav {
+  background: var(--primary);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+nav li {
+  margin: 0 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+nav a:hover {
+  color: var(--primary);
+  background-color: var(--accent);
+}
+
+/* Shoot Types */
+.shoot-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.shoot-card {
+  background: rgb(248, 246, 246);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(10, 10, 10, 0.815);
+}
+
+.shoot-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgb(245, 243, 243);
+}
+
+.shoot-image {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+}
+
+.shoot-details {
+  padding: 1.5rem;
+}
+
+.shoot-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.shoot-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--gray);
+}
+
+.shoot-description {
+  margin-bottom: 1.5rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: rgb(250, 249, 249);
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:hover {
+  background: var(--dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(12, 12, 12, 0.1);
+}
+
+.btn-instagram {
+  background: #E1306C;
+}
+
+.btn-email {
+  background: var(--primary);
+}
+
+/* Gallery */
+.gallery {
+  padding: 4rem 0;
+  background-color: var(--light);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgb(8, 8, 8);
+  aspect-ratio: 4/3;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.gallery-item:hover {
+  box-shadow: 0 8px 25px rgb(7, 7, 7);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Updated Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 13, 13, 0.9);
+  z-index: 2000;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.lightbox-container {
+  width: 100%;
+  max-width: 1200px;
+  background: #fffefe;
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+}
+
+.lightbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.lightbox-title {
+  color: rgb(0, 0, 0);
+  font-size: 1.8rem;
+}
+
+.close-lightbox {
+  color: rgb(0, 0, 0);
+  font-size: 2.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: 0.3s;
+}
+
+.close-lightbox:hover {
+  color: #ccc;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.collection-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  transition: transform 0.3s;
+}
+
+.collection-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection-item:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .lightbox {
+    padding: 1rem;
+  }
+  
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lightbox-container {
+    padding: 1.5rem;
+  }
+  
+  .lightbox-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* Stats */
+.stats {
+  background: var(--primary);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.stat {
+  padding: 1rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.stat span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* Contact Styles */
+.contact-info {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-info i {
+  color: var(--accent);
+  width: 20px;
+  text-align: center;
+}
+
+.contact-info a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.contact-info a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form label {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white;
+  color: var(--text-dark);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+form button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+}
+
+form button i {
+  font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 2.5rem 0;
+}
+
+.social-links {
+  margin: 1.5rem 0;
+}
+
+.social-links a {
+  color: white;
+  margin: 0 12px;
+  font-size: 1.3rem;
+  transition: all 0.3s;
+  opacity: 0.8;
+}
+
+.social-links a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  margin: 3rem auto;
+  animation: modalFadeIn 0.3s;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray);
+  background: none;
+  border: none;
+  transition: color 0.3s;
+}
+
+.close-modal:hover {
+  color: var(--primary);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Thank You Message */
+.thank-you {
+  display: none;
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  max-width: 600px;
+  margin: 3rem auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.thank-you h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.checkmark {
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav li {
+    margin: 0.5rem 0;
+  }
+  
+  .shoot-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-container {
+    flex-direction: column;
+  }
+  
+  .stat {
+    margin: 1.5rem 0;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .contact-buttons .btn {
+    width: 100%;
+  }
+  
+  .modal-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .lightbox-content {
+    max-width: 95%;
+  }
+  
+  .lightbox-nav button {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+}
+
+/* Additional Enhancements */
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--primary);
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--gray);
+  font-size: 1.05rem;
+}
+
+/* Select dropdown styling */
+select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border 0.3s;
+  background-color: white;
+  color: var(--text);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 1rem;
+}
+
+select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* Modal styling adjustments */
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  margin: 3rem auto;
+  animation: modalFadeIn 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+<header>
+   <div class="container">
+    <div class="header-content">
+    <div class="profile-img-container animate-fade">
+  <img src="image/bdtlogo.jpg" alt="BDT SHOOTS" class="profile-img">
+  <div class="badge"></div>
+  <div class="logo">BDT SHOOTS</div>
+  <div class="tagline">Glasgow Sports & Lifestyle Photography</div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Book Now</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 class="section-title">Book Your Shoot</h1>
+  <p class="section-subtitle">
+    Professional photography sessions tailored to your needs. All packages include edited photos of your choice.
+  </p>
+
+  <section id="services">
+    <div class="shoot-types">
+      <!-- Football Shoot -->
+      <div class="shoot-card">
+        <div class="shoot-image" style="background-image: url('image//footballone.jpg');"></div>
+        <div class="shoot-details">
+          <h2 class="shoot-title">Football Shoot</h2>
+          <p class="shoot-price">Full team: £10 per person | Single: £20</p>
+          <p class="shoot-description">
+            Action shots, team photos, and individual portraits. Perfect for clubs and aspiring players.
+          </p>
+          <button class="btn btn-block book-btn" data-type="Football Shoot">BOOK NOW</button>
+        </div>
+      </div>
+
+      <!-- Basketball Shoot -->
+      <div class="shoot-card">
+        <div class="shoot-image" style="background-image:url('image//basketballone.jpg');"></div>
+        <div class="shoot-details">
+          <h2 class="shoot-title">Basketball Shoot</h2>
+          <p class="shoot-price">Full team: £10 per person | Single: £20</p>
+          <p class="shoot-description">
+            Dynamic court action and professional portraits. Showcase your skills with stunning imagery.
+          </p>
+          <button class="btn btn-block book-btn" data-type="Basketball Shoot">BOOK NOW</button>
+        </div>
+      </div>
+
+      <!-- Lifestyle Shoot -->
+      <div class="shoot-card">
+        <div class="shoot-image" style="background-image: url('image//life1.jpg');"></div>
+        <div class="shoot-details">
+          <h2 class="shoot-title">Lifestyle Shoot</h2>
+          <p class="shoot-price">£20 per hour</p>
+          <p class="shoot-description">
+            Casual, authentic portraits in your favorite locations. Perfect for social media or personal keepsakes.
+          </p>
+          <button class="btn btn-block book-btn" data-type="Lifestyle Shoot">BOOK NOW</button>
+        </div>
+      </div>
+
+     
+  </section>
+  <section id="gallery" class="gallery">
+    <h2 class="section-title">Our Work</h2>
+    <p class="section-subtitle">
+      Browse our photography collections (click any category to see more)
+    </p>
+    <div class="gallery-grid">
+      <!-- Football Collection -->
+      <div class="gallery-item" onclick="openCollection('football')">
+        <img src=image//footballone.jpg alt="football shot action">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
+          Football Collection
+        </div>
+      </div>
+      
+      <!-- Basketball Collection -->
+      <div class="gallery-item" onclick="openCollection('basketball')">
+        <img src="image//basketballone.jpg" alt="Basketball action">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
+          Basketball Collection
+        </div>
+      </div>
+      
+      <!-- Lifestyle Collection -->
+      <div class="gallery-item" onclick="openCollection('lifestyle')">
+        <img src="image//life1.jpg" alt="Lifestyle portrait">
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
+          Lifestyle Collection
+        </div>
+     
+  </section>
+
+  <!-- Lightbox for Collections -->
+  <div id="collectionLightbox" class="lightbox">
+    <div class="lightbox-container">
+      <div class="lightbox-header">
+        <h3 class="lightbox-title" id="collection-title">Collection</h3>
+        <button class="close-lightbox" onclick="closeCollection()">&times;</button>
+      </div>
+      <div class="lightbox-content" id="collection-content">
+        <!-- Images will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="">
+    </div>
+    <div class="lightbox-nav">
+      <button onclick="changeImage(-1)">&#10094;</button>
+      <button onclick="changeImage(1)">&#10095;</button>
+    </div>
+  </div>
+
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat">50+<span>Sessions</span></div>
+      <div class="stat">100%<span>Satisfaction</span></div>
+      <div class="stat">2+<span>Years Experience</span></div>
+    </div>
+  </section>
+</div>
+
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">Ready to Book Your Session?</h2>
+    <p class="section-subtitle">
+      Contact us to schedule your photography session or ask any questions.
+    </p>
+    
+    <div class="contact-buttons">
+      <a href="https://instagram.com/bdtshoots" class="btn btn-instagram">
+        <i class="fab fa-instagram"></i> Instagram DM
+      </a>
+      <a href="mailto:bookings@bdtshoots.com" class="btn btn-email">
+        <i class="fas fa-envelope"></i> Email Us
+      </a>
+      <button class="btn" id="contact-form-btn">
+        <i class="fas fa-edit"></i> Contact Form
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Modal -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <button class="close-modal">&times;</button>
+    <h2>Book Your Session</h2>
+    <p>Fill out the form below to reserve your photography session</p>
+    
+    <form id="bookingForm" class="contact-form" action="https://formsubmit.co/hy07my@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Booking - BDT Shoots">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="#thank-you">
+      <input type="hidden" name="_cc" value="hy07my@gmail.com">
+      <input type="hidden" name="_replyto" value="bookings@bdtshoots.com">
+      
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      
+      <div class="form-group">
+        <label for="shoot-type">Shoot Type *</label>
+        <select id="shoot-type" name="shoot_type" required>
+          <option value="">Select a shoot type</option>
+          <option value="Football Shoot">Football Shoot</option>
+          <option value="Basketball Shoot">Basketball Shoot</option>
+          <option value="Lifestyle Shoot">Lifestyle Shoot</option>
+          <option value="Event Shoot">Event Shoot</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Preferred Date *</label>
+        <input type="date" id="date" name="preferred_date" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Special Requests</label>
+        <textarea id="message" name="message" placeholder="Any specific requirements or notes..."></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-block">
+        <i class="fas fa-calendar-check"></i> Confirm Booking
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Thank You Message -->
+<div id="thank-you" class="thank-you" style="display: none;">
+  <div class="checkmark">✓</div>
+  <h2>Booking Confirmed!</h2>
+  <p>Thank you for booking with BDT Shoots. We've sent a confirmation to your email.</p>
+  <p>We'll contact you within 24 hours to finalize the details.</p>
+  <a href="https://instagram.com/bdtshoots" class="btn btn-instagram" style="margin-top: 1rem;">
+    <i class="fab fa-instagram"></i> Follow Us
+  </a>
+</div>
+
+<footer>
+  <div class="social-links">
+    <a href="https://instagram.com/bdtshoots"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+  </div>
+  <p>&copy; 2024 BDT Photography. Glasgow, United Kingdom.</p>
+</footer>
+
+
+  <section id="contact">
+    <h2>Contact Information</h2>
+    <div class="contact-info">
+      <p><i class="fas fa-user"></i> <strong>Owner:</strong> BDT SHOT</p>
+      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:hsn07an@gmail.com">hsn07an@gmail.com</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Glasgow City, UK</p>
+     
+    </div>
+    
+    <div class="text-center mb-4">
+      <h3 class="fw-bold">Get In Touch</h3>
+      <p class="text-muted">Reach out for a great picture for you</p>
+    </div>
+    <div class="service-card">
+      <form action="https://formsubmit.co/hy07my@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from Hassan Designs">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+        
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+     
+        
+        
+        <button type="submit"><i class="fas fa-paper-plane"></i> BOOK </button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Collection data - replace with your actual images
+  const collections = {
+    football: [
+      { src: 'image/footballone.jpg', alt: 'Football action 1' },
+      { src: 'image/football2.jpg', alt: 'Football action 2' },
+      { src: 'image/footballthree.jpg', alt: 'Football action 3' },
+      { src: 'image/footballfour.jpg', alt: 'Football action 4' },
+      { src: 'image/footballfive.jpg', alt: 'Football action 5' },
+      { src: 'image/footballsix.jpg', alt: 'Football action 6' },
+      { src: 'image/footballseven.jpg', alt: 'Football action 7' },
+      { src: 'image/footballeight.jpg', alt: 'Football action 8' },
+      { src: 'image/footballten.jpg', alt: 'Football action 9' },
+      { src: 'image/football3.jpg', alt: 'Football action 10' },  
+      { src: 'image/football4.jpg', alt: 'Football action 11' },
+      { src: 'image/football5.jpg', alt: 'Football action 12' },  
+      { src: 'image/football6.jpg', alt: 'Football action 13' },
+      { src: 'image/football7.jpg', alt: 'Football action 14' },
+      { src: 'image/football8.jpg', alt: 'Football action 15' },
+      { src: 'image/football9.jpg', alt: 'Football action 16' },
+      { src: 'image/football10.jpg', alt: 'Football action 17' },
+      { src: 'image/football11.jpg', alt: 'Football action 17' },
+      { src: 'image/football12.jpg', alt: 'Football action 17' },
+
+    ],
+    basketball: [
+      { src: 'image/basketballone.jpg', alt: 'Basketball action 1' },
+      { src: 'image/basketballtwo.jpg', alt: 'Basketball action 2' },
+      { src: 'image/basketballthree.jpg', alt: 'Basketball action 3' },
+      { src: 'image/basketballfour.jpg', alt: 'Basketball action 1' },
+      { src: 'image/basketballfive.jpg', alt: 'Basketball action 1' },
+      { src: 'image/basketballsix.jpg', alt: 'Basketball action 1' },
+      { src: 'image/basketballseven.jpg', alt: 'Basketball action 1' },
+      { src: 'image/basketballeight.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketballnine.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketballten.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball1.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball2.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball3.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball4.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball5.jpg', alt: 'Basketball action 1' },
+     { src: 'image/basketball6.jpg', alt: 'Basketball action 1' },  
+     { src: 'image/basketball7.jpg', alt: 'Basketball action 1' },
+     
+
+    ],
+    lifestyle: [
+      { src: 'image/life1.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life2.jpg', alt: 'Lifestyle portrait 2' },
+      { src: 'image/life3.jpg', alt: 'Lifestyle portrait 3' },
+      { src: 'image/life4.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life5.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life4.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life6.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life7.jpg', alt: 'Lifestyle portrait 1' },
+      { src: 'image/life8.jpg', alt: 'Lifestyle portrait 1' },
+    ],
+  
+  };
+
+  // Collection titles
+  const collectionTitles = {
+    football: "Football Photography Collection",
+    basketball: "Basketball Photography Collection",
+    lifestyle: "Lifestyle Photography Collection",
+    events: "Event Photography Collection"
+  };
+
+  function openCollection(collectionName) {
+    const lightbox = document.getElementById('collectionLightbox');
+    const content = document.getElementById('collection-content');
+    const title = document.getElementById('collection-title');
+    
+    // Clear previous content
+    content.innerHTML = '';
+    
+    // Set title
+    title.textContent = collectionTitles[collectionName] || "Photo Collection";
+    
+    // Create grid container
+    const grid = document.createElement('div');
+    grid.className = 'collection-grid';
+    
+    // Add images to grid
+    collections[collectionName].forEach(img => {
+      const item = document.createElement('div');
+      item.className = 'collection-item';
+      
+      const imgElement = document.createElement('img');
+      imgElement.src = img.src;
+      imgElement.alt = img.alt;
+      imgElement.loading = 'lazy';
+      
+      item.appendChild(imgElement);
+      grid.appendChild(item);
+    });
+    
+    // Add grid to lightbox
+    content.appendChild(grid);
+    
+    // Show lightbox
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Scroll to top of lightbox
+    lightbox.scrollTo(0, 0);
+  }
+
+  function closeCollection() {
+    document.getElementById('collectionLightbox').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close lightbox when clicking outside content
+  document.getElementById('collectionLightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeCollection();
+    }
+  });
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-image');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  let currentImageIndex = 0;
+  const images = Array.from(galleryItems).map(item => 
+    item.querySelector('img').src
+  );
+
+  function openLightbox(imageSrc) {
+    currentImageIndex = images.indexOf(imageSrc);
+    lightboxImg.src = imageSrc;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  function changeImage(step) {
+    currentImageIndex += step;
+    
+    // Wrap around if at beginning or end
+    if (currentImageIndex >= images.length) {
+      currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+      currentImageIndex = images.length - 1;
+    }
+    
+    lightboxImg.src = images[currentImageIndex];
+  }
+
+  // Close lightbox when clicking outside the image
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        changeImage(-1);
+      } else if (e.key === 'ArrowRight') {
+        changeImage(1);
+      }
+    }
+  });
+
+  // Modal functionality
+  const contactModal = document.getElementById('contactModal');
+  const contactFormBtn = document.getElementById('contact-form-btn');
+  const closeModal = document.querySelector('.close-modal');
+  const bookButtons = document.querySelectorAll('.book-btn');
+  const shootTypeSelect = document.getElementById('shoot-type');
+  const bookingForm = document.getElementById('bookingForm');
+  const thankYouMessage = document.getElementById('thank-you');
+  
+  // Open modal when contact form button is clicked
+  contactFormBtn.addEventListener('click', () => {
+    contactModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+  
+  // Open modal with shoot type pre-selected when book buttons are clicked
+  bookButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const shootType = button.getAttribute('data-type');
+      shootTypeSelect.value = shootType;
+      
+      // Force UI update
+      const event = new Event('change');
+      shootTypeSelect.dispatchEvent(event);
+      
+      contactModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // Scroll to the select element to show it's pre-selected
+      setTimeout(() => {
+        shootTypeSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    });
+  });
+  
+  // Close modal when X is clicked
+  closeModal.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+  
+  // Close modal when clicking outside content
+  window.addEventListener('click', (e) => {
+    if (e.target === contactModal) {
+      contactModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+  
+  // Form submission handling
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    submitBtn.disabled = true;
+    
+    // Get form data
+    const formData = new FormData(this);
+    
+    // Submit form using Fetch API
+    fetch('https://formsubmit.hy07my@gmail.com', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Hide modal and show thank you message
+      contactModal.style.display = 'none';
+      thankYouMessage.style.display = 'block';
+      document.body.style.overflow = 'auto';
+      
+      // Scroll to thank you message
+      thankYouMessage.scrollIntoView({ behavior: 'smooth' });
+      
+      // Reset form
+      this.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was an error submitting your form. Please try again or contact us directly.');
+    })
+    .finally(() => {
+      // Reset button state
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    });
+  });
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if (this.getAttribute('href') !== '#') {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
