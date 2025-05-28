@@ -126,23 +126,12 @@ header {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  color: white;
 }
 
 .logo-img {
   height: 40px;
   width: auto;
-}
-
-.tagline {
-  font-style: italic;
-  opacity: 0.8;
-  color: rgba(14, 13, 13, 0.8);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
 }
 
 .tagline {
@@ -765,6 +754,15 @@ select:focus {
   animation: modalFadeIn 0.3s;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+/* Contact buttons container */
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
 </style>
 </head>
 <body>
@@ -796,45 +794,45 @@ select:focus {
     <div class="shoot-types">
       <!-- Football Shoot -->
       <div class="shoot-card">
-        <div class="shoot-image" style="background-image: url('image//footballone.jpg');"></div>
+        <div class="shoot-image" style="background-image: url('image/footballone.jpg');"></div>
         <div class="shoot-details">
           <h2 class="shoot-title">Football Shoot</h2>
           <p class="shoot-price">Full team: £10 per person | Single: £20</p>
           <p class="shoot-description">
             Action shots, team photos, and individual portraits. Perfect for clubs and aspiring players.
           </p>
-          <button class="btn btn-block book-btn" data-type="Football Shoot">BOOK NOW</button>
+          <a href="#contact" class="btn btn-block">BOOK NOW</a>
         </div>
       </div>
 
       <!-- Basketball Shoot -->
       <div class="shoot-card">
-        <div class="shoot-image" style="background-image:url('image//basketballone.jpg');"></div>
+        <div class="shoot-image" style="background-image:url('image/basketballone.jpg');"></div>
         <div class="shoot-details">
           <h2 class="shoot-title">Basketball Shoot</h2>
           <p class="shoot-price">Full team: £10 per person | Single: £20</p>
           <p class="shoot-description">
             Dynamic court action and professional portraits. Showcase your skills with stunning imagery.
           </p>
-          <button class="btn btn-block book-btn" data-type="Basketball Shoot">BOOK NOW</button>
+          <a href="#contact" class="btn btn-block">BOOK NOW</a>
         </div>
       </div>
 
       <!-- Lifestyle Shoot -->
       <div class="shoot-card">
-        <div class="shoot-image" style="background-image: url('image//life1.jpg');"></div>
+        <div class="shoot-image" style="background-image: url('image/life1.jpg');"></div>
         <div class="shoot-details">
           <h2 class="shoot-title">Lifestyle Shoot</h2>
           <p class="shoot-price">£20 per hour</p>
           <p class="shoot-description">
             Casual, authentic portraits in your favorite locations. Perfect for social media or personal keepsakes.
           </p>
-          <button class="btn btn-block book-btn" data-type="Lifestyle Shoot">BOOK NOW</button>
+          <a href="#contact" class="btn btn-block">BOOK NOW</a>
         </div>
       </div>
-
-     
+    </div>
   </section>
+  
   <section id="gallery" class="gallery">
     <h2 class="section-title">Our Work</h2>
     <p class="section-subtitle">
@@ -843,7 +841,7 @@ select:focus {
     <div class="gallery-grid">
       <!-- Football Collection -->
       <div class="gallery-item" onclick="openCollection('football')">
-        <img src=image//footballone.jpg alt="football shot action">
+        <img src="image/footballone.jpg" alt="football shot action">
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
           Football Collection
         </div>
@@ -851,7 +849,7 @@ select:focus {
       
       <!-- Basketball Collection -->
       <div class="gallery-item" onclick="openCollection('basketball')">
-        <img src="image//basketballone.jpg" alt="Basketball action">
+        <img src="image/basketballone.jpg" alt="Basketball action">
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
           Basketball Collection
         </div>
@@ -859,11 +857,12 @@ select:focus {
       
       <!-- Lifestyle Collection -->
       <div class="gallery-item" onclick="openCollection('lifestyle')">
-        <img src="image//life1.jpg" alt="Lifestyle portrait">
+        <img src="image/life1.jpg" alt="Lifestyle portrait">
         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; text-align: center;">
           Lifestyle Collection
         </div>
-     
+      </div>
+    </div>
   </section>
 
   <!-- Lightbox for Collections -->
@@ -876,18 +875,6 @@ select:focus {
       <div class="lightbox-content" id="collection-content">
         <!-- Images will be inserted here by JavaScript -->
       </div>
-    </div>
-  </div>
-
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content">
-      <img id="lightbox-image" src="" alt="">
-    </div>
-    <div class="lightbox-nav">
-      <button onclick="changeImage(-1)">&#10094;</button>
-      <button onclick="changeImage(1)">&#10095;</button>
     </div>
   </div>
 
@@ -911,74 +898,60 @@ select:focus {
       <a href="https://instagram.com/bdtshoots" class="btn btn-instagram">
         <i class="fab fa-instagram"></i> Instagram DM
       </a>
-      <a href="mailto:bookings@bdtshoots.com" class="btn btn-email">
+      <a href="mailto:hy07my@gmail.com" class="btn btn-email">
         <i class="fas fa-envelope"></i> Email Us
       </a>
       <button class="btn" id="contact-form-btn">
         <i class="fas fa-edit"></i> Contact Form
       </button>
     </div>
-  </div>
-</section>
-
-
-<!-- Contact Form Modal -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <button class="close-modal">&times;</button>
-    <h2>Book Your Session</h2>
-    <p>Fill out the form below to reserve your photography session</p>
     
-    <form id="bookingForm" class="contact-form" action="https://formsubmit.co/hy07my@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New Booking - BDT Shoots">
+    <div class="contact-info">
+      <p><i class="fas fa-user"></i> <strong>Owner:</strong> BDT SHOT</p>
+      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:hy07my@gmail.com">hy07my@gmail.com</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Glasgow City, UK</p>
+    </div>
+    
+    <form action="https://formsubmit.co/hy07my@gmail.com" method="POST" class="service-card">
+      <input type="hidden" name="_subject" value="New message from BDT SHOTS">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" value="#thank-you">
-      <input type="hidden" name="_cc" value="hy07my@gmail.com">
-      <input type="hidden" name="_replyto" value="bookings@bdtshoots.com">
       
       <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input type="text" id="name" name="name" required>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
       </div>
       
       <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
       </div>
-      
+       
       <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone">
+        <label for="requests">Special Requests</label>
+        <input type="text" id="requests" name="requests" placeholder="Special Requests" required>
       </div>
-      
+
       <div class="form-group">
-        <label for="shoot-type">Shoot Type *</label>
-        <select id="shoot-type" name="shoot_type" required>
-          <option value="">Select a shoot type</option>
-          <option value="Football Shoot">Football Shoot</option>
-          <option value="Basketball Shoot">Basketball Shoot</option>
-          <option value="Lifestyle Shoot">Lifestyle Shoot</option>
-          <option value="Event Shoot">Event Shoot</option>
-          <option value="Other">Other</option>
+        <label for="service">Service Interested In</label>
+        <select id="service" name="service" required>
+          <option value="">Select Service</option>
+          <option>Football Shoot</option>
+          <option>Basketball Shoot</option>
+          <option>Lifestyle Shoot</option>
+          <option>Other</option>
         </select>
       </div>
       
       <div class="form-group">
-        <label for="date">Preferred Date *</label>
-        <input type="date" id="date" name="preferred_date" required>
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
       </div>
       
-      <div class="form-group">
-        <label for="message">Special Requests</label>
-        <textarea id="message" name="message" placeholder="Any specific requirements or notes..."></textarea>
-      </div>
-      
-      <button type="submit" class="btn btn-block">
-        <i class="fas fa-calendar-check"></i> Confirm Booking
-      </button>
+      <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> BOOK</button>
     </form>
   </div>
-</div>
+</section>
 
 <!-- Thank You Message -->
 <div id="thank-you" class="thank-you" style="display: none;">
@@ -990,66 +963,6 @@ select:focus {
     <i class="fab fa-instagram"></i> Follow Us
   </a>
 </div>
-
-  
-  <section id="contact">
-    <h2>Contact Information</h2>
-    <div class="contact-info">
-      <p><i class="fas fa-user"></i> <strong>Owner:</strong> BDT SHOT</p>
-      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:hy07my@gmail.com">hy07my@gmail.com</a></p>
-      <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Glasgow City, UK</p>
-      
-    </div>
-    
-    <div class="text-center mb-4">
-      <h3 class="fw-bold">Get In Touch</h3>
-      <p class="text-muted">Reach out for a consultation or custom project</p>
-    </div>
-    <div class="service-card">
-      <form action="https://formsubmit.co/hy07my@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New message from BDT SHOTS">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
-        
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
-        </div>
-         
-        <div class="form-group">
-          <label for="Special Requests">Special Requests</label>
-          <input type="text" id="email" name="message" placeholder="Special Requests" required>
-        </div>
-
-
-
-        
-        <div class="form-group">
-          <label for="service">Service Interested In</label>
-          <select id="service" name="service" required>
-            <option value="">Select Service</option>
-            <option>Website Template</option>
-            <option>Custom Development</option>
-            <option>Other</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-        </div>
-        
-        <button type="submit"><i class="fas fa-paper-plane"></i> BOOK </button>
-      </form>
-    </div>
-  </section>
-</main>
-
 
 <footer>
   <div class="social-links">
@@ -1083,7 +996,6 @@ select:focus {
       { src: 'image/football10.jpg', alt: 'Football action 17' },
       { src: 'image/football11.jpg', alt: 'Football action 17' },
       { src: 'image/football12.jpg', alt: 'Football action 17' },
-
     ],
     basketball: [
       { src: 'image/basketballone.jpg', alt: 'Basketball action 1' },
@@ -1103,8 +1015,6 @@ select:focus {
      { src: 'image/basketball5.jpg', alt: 'Basketball action 1' },
      { src: 'image/basketball6.jpg', alt: 'Basketball action 1' },  
      { src: 'image/basketball7.jpg', alt: 'Basketball action 1' },
-     
-
     ],
     lifestyle: [
       { src: 'image/life1.jpg', alt: 'Lifestyle portrait 1' },
@@ -1117,15 +1027,13 @@ select:focus {
       { src: 'image/life7.jpg', alt: 'Lifestyle portrait 1' },
       { src: 'image/life8.jpg', alt: 'Lifestyle portrait 1' },
     ],
-  
   };
 
   // Collection titles
   const collectionTitles = {
     football: "Football Photography Collection",
     basketball: "Basketball Photography Collection",
-    lifestyle: "Lifestyle Photography Collection",
-    events: "Event Photography Collection"
+    lifestyle: "Lifestyle Photography Collection"
   };
 
   function openCollection(collectionName) {
@@ -1180,68 +1088,10 @@ select:focus {
     }
   });
 
-  // Lightbox functionality
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-image');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  let currentImageIndex = 0;
-  const images = Array.from(galleryItems).map(item => 
-    item.querySelector('img').src
-  );
-
-  function openLightbox(imageSrc) {
-    currentImageIndex = images.indexOf(imageSrc);
-     lightboxImg.src = imageSrc;
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-
-  function changeImage(step) {
-    currentImageIndex += step;
-    
-    // Wrap around if at beginning or end
-    if (currentImageIndex >= images.length) {
-      currentImageIndex = 0;
-    } else if (currentImageIndex < 0) {
-      currentImageIndex = images.length - 1;
-    }
-    
-    lightboxImg.src = images[currentImageIndex];
-  }
-
-  // Close lightbox when clicking outside the image
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    if (lightbox.style.display === 'flex') {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        changeImage(-1);
-      } else if (e.key === 'ArrowRight') {
-        changeImage(1);
-      }
-    }
-  });
-
   // Modal functionality
   const contactModal = document.getElementById('contactModal');
   const contactFormBtn = document.getElementById('contact-form-btn');
   const closeModal = document.querySelector('.close-modal');
-  const bookButtons = document.querySelectorAll('.book-btn');
-  const shootTypeSelect = document.getElementById('shoot-type');
-  const bookingForm = document.getElementById('bookingForm');
-  const thankYouMessage = document.getElementById('thank-you');
   
   // Open modal when contact form button is clicked
   contactFormBtn.addEventListener('click', () => {
@@ -1249,6 +1099,7 @@ select:focus {
     document.body.style.overflow = 'hidden';
   });
   
+ 
   // Open modal with shoot type pre-selected when book buttons are clicked
   bookButtons.forEach(button => {
     button.addEventListener('click', () => {
